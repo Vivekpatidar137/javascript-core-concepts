@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debouncing</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🔍 Debouncing Example</h1>
+
+    <div class="explanation">
+      <strong>What is Debouncing?</strong><br />
+      Debouncing delays function execution until after a specified time has
+      passed since the last time it was invoked. Perfect for search inputs,
+      resize events, and API calls where you want to wait for user to stop
+      typing.
+    </div>
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Type to search... (debouncing waits 500ms after you stop typing)"
+    />
+
+    <div class="comparison">
+      <div class="section">
+        <h3>🚀 Without Debouncing</h3>
+        <div class="counter" id="normalCounter">API Calls: 0</div>
+        <div class="status" id="normalStatus">Ready to search...</div>
+        <div class="output" id="normalOutput"></div>
+      </div>
+
+      <div class="section">
+        <h3>⏱️ With Debouncing (500ms)</h3>
+        <div class="counter" id="debouncedCounter">API Calls: 0</div>
+        <div class="status" id="debouncedStatus">Ready to search...</div>
+        <div class="output" id="debouncedOutput"></div>
+      </div>
+    </div>
+
+    <div class="search-demo">
+      <h3>🔍 Realistic Search Demo</h3>
+      <input
+        type="text"
+        id="realSearchInput"
+        placeholder="Search for users... (debounced search)"
+      />
+      <div class="status" id="searchStatus">Type to search users...</div>
+      <div class="output" id="searchResults"></div>
+    </div>
+
+    <button class="clear-btn" onclick="clearAllOutputs()">
+      Clear All Outputs
+    </button>
+    <button class="clear-btn" onclick="resetCounters()">Reset Counters</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+body {
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #ff6b6b, #feca57);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.header {
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.explanation {
+  background: #fff3cd;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  border-left: 5px solid #ffc107;
+}
+
+.pizza-shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.chef-card {
+  background: #f8f9fa;
+  border: 3px solid #dee2e6;
+  border-radius: 15px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chef-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.chef-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chef-avatar {
+  font-size: 4em;
+  margin: 10px 0;
+}
+
+.chef-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 5px 0;
+}
+
+.chef-mood {
+  padding: 5px 10px;
+  background: #e8f5e8;
+  border-radius: 15px;
+  font-size: 0.9em;
+  color: #27ae60;
+  display: inline-block;
+}
+
+.toppings-section {
+  margin: 20px 0;
+}
+
+.toppings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.topping-btn {
+  padding: 8px;
+  background: #fff;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
+
+.topping-btn:hover {
+  border-color: #007bff;
+  background: #e7f3ff;
+}
+
+.topping-btn.selected {
+  background: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease;
+  flex: 1;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #1e7e34;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background: #e0a800;
+}
+
+.memory-section {
+  background: #f1f3f4;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.memory-title {
+  font-weight: bold;
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+.pizza-memory {
+  background: white;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border-left: 4px solid #28a745;
+  font-size: 0.9em;
+}
+
+.chef-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.stat-item {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid #e9ecef;
+}
+
+.stat-number {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.stat-label {
+  font-size: 0.8em;
+  color: #6c757d;
+}
+
+.pizza-output {
+  background: #fff;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.closure-demo {
+  background: #e8f4fd;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  border-left: 5px solid #007bff;
+}
+
+.code-snippet {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+  margin: 10px 0;
+  overflow-x: auto;
+}

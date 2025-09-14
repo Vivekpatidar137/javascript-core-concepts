@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Closures Demo / Pizza Chef Closures</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🍕 Pizza Chef Closures</h1>
+        <p>Learn JavaScript closures through delicious pizza making!</p>
+      </div>
+
+      <div class="explanation">
+        <strong>🎯 What are Closures?</strong><br />
+        Closures allow functions to "remember" variables from their outer scope
+        even after the outer function has finished executing. Each pizza chef
+        below has their own private memory of customer preferences - that's
+        closure in action!
+      </div>
+
+      <div class="pizza-shop" id="pizzaShop">
+        <!-- Pizza chefs will be dynamically added here -->
+      </div>
+
+      <div class="closure-demo">
+        <h3>🧠 The Closure Magic Behind The Scenes:</h3>
+        <div class="code-snippet">
+          const createPizzaChef = (name, personality) => { // These variables
+          are "closed over" - private to each chef! let customerPreferences =
+          []; let pizzasMade = 0; let mood = "😊 Happy"; return { rememberOrder:
+          (toppings) => { customerPreferences.push({toppings, date: new
+          Date()}); return `${name} says: "Got it! I'll remember that!"`; },
+          makePizza: (toppings) => { pizzasMade++; return `🍕 ${name} made a
+          delicious pizza with ${toppings.join(', ')}!`; }, // Each chef
+          remembers their own data - that's closure! }; };
+        </div>
+        <p>
+          <strong>Key Point:</strong> Each chef has their own independent
+          memory. Chef Mario can't see Chef Luigi's orders, and vice versa!
+        </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

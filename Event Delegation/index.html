@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Fireworks Show - Event Delegation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="fireworkArea">
+      <div class="header">
+        <h1>🎆 Digital Fireworks Show</h1>
+        <p class="subtitle">
+          Learn Event Delegation Through Spectacular Fireworks!
+        </p>
+        <div class="explanation">
+          <strong>🔮 The Magic:</strong> Click anywhere on the screen to create
+          fireworks! This entire show uses just <strong>ONE</strong> event
+          listener that catches every click through event delegation. No matter
+          where you click, the single listener handles it perfectly!
+        </div>
+      </div>
+
+      <!-- Event Listener Counter -->
+      <div class="listener-count">
+        <div>🎯 Event Listeners</div>
+        <div class="listener-number">1</div>
+        <div style="font-size: 0.9em; margin-top: 5px">
+          For the ENTIRE show!
+        </div>
+      </div>
+
+      <!-- Instructions -->
+      <div class="instructions" id="instructions">
+        ✨ Click anywhere to create fireworks! ✨
+      </div>
+
+      <!-- Firework Area -->
+      <div class="firework-area"></div>
+
+      <!-- Stats Panel -->
+      <div class="stats-panel">
+        <div class="stats-title">🎆 Fireworks Stats</div>
+
+        <div class="stat-item">
+          <div>🎇 Total Fireworks</div>
+          <div class="stat-value" id="fireworkCount">0</div>
+        </div>
+
+        <div class="stat-item">
+          <div>✨ Particles Created</div>
+          <div class="stat-value" id="particleCount">0</div>
+        </div>
+
+        <div class="stat-item">
+          <div>🖱️ Clicks Handled</div>
+          <div class="stat-value" id="clickCount">0</div>
+        </div>
+
+        <div class="stat-item">
+          <div>⚡ Events/Second</div>
+          <div class="stat-value" id="eventsPerSecond">0</div>
+        </div>
+      </div>
+
+      <!-- Control Panel -->
+      <div class="control-panel">
+        <button class="btn btn-success" onclick="autoFireworks()">
+          🎆 Auto Show
+        </button>
+        <button class="btn btn-warning" onclick="clearFireworks()">
+          🧹 Clear
+        </button>
+        <button class="btn btn-primary" onclick="showDelegationInfo()">
+          🧠 How It Works
+        </button>
+      </div>
+
+      <!-- Delegation Info Modal -->
+      <div class="delegation-info" id="delegationInfo">
+        <button class="close-info" onclick="hideDelegationInfo()">×</button>
+        <h3>🧠 Event Delegation Explained</h3>
+        <br />
+        <p><strong>🎯 What's Happening:</strong></p>
+        <p>• ONE event listener is attached to the main container</p>
+        <p>• Every click bubbles up to this single listener</p>
+        <p>• The listener checks where the click happened (event.target)</p>
+        <p>• Creates a firework at the exact click coordinates</p>
+        <br />
+        <p><strong>🚀 Why This Is Powerful:</strong></p>
+        <p>
+          • <strong>Performance:</strong> No matter how many areas are
+          clickable, only 1 listener
+        </p>
+        <p>• <strong>Memory Efficient:</strong> Prevents listener overload</p>
+        <p>
+          • <strong>Dynamic:</strong> Works for any new content added to the
+          page
+        </p>
+        <p>
+          • <strong>Scalable:</strong> Could handle millions of clickable areas
+        </p>
+        <br />
+        <p><strong>💡 Real-World Use:</strong></p>
+        <p>
+          Perfect for: Dynamic lists, image galleries, interactive dashboards,
+          games, and any UI with lots of clickable elements!
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

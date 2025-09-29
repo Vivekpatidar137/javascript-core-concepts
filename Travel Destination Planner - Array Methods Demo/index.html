@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Destination Planner - Array Methods</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>✈️ Travel Destination Planner</h1>
+        <p>Master JavaScript Array Methods While Planning Your Dream Trip!</p>
+      </div>
+
+      <div class="explanation">
+        <strong>🎯 Learn Array Methods Through Travel Planning!</strong><br />
+        Each button demonstrates a different array method with real travel data.
+        Click destinations to build your wishlist, then use array methods to
+        analyze your travel data!
+      </div>
+
+      <div class="game-area">
+        <div class="control-panel">
+          <div class="panel-title">🛠️ Array Methods</div>
+
+          <button class="method-button map" onclick="demonstrateMap()">
+            💰 .map() - Calculate Costs
+          </button>
+
+          <button class="method-button filter" onclick="demonstrateFilter()">
+            🔍 .filter() - Find by Budget
+          </button>
+
+          <button class="method-button reduce" onclick="demonstrateReduce()">
+            📊 .reduce() - Total Expenses
+          </button>
+
+          <button class="method-button find" onclick="demonstrateFind()">
+            🎯 .find() - Best Destination
+          </button>
+
+          <button class="method-button sort" onclick="demonstrateSort()">
+            📈 .sort() - Rank by Rating
+          </button>
+
+          <button class="method-button forEach" onclick="demonstrateForEach()">
+            📝 .forEach() - Plan Itinerary
+          </button>
+
+          <div style="margin-top: 20px">
+            <button class="clear-btn" onclick="clearWishlist()">
+              Clear Wishlist
+            </button>
+            <button class="clear-btn" onclick="resetDemo()">Reset Demo</button>
+          </div>
+        </div>
+
+        <div class="travel-arena">
+          <h2 style="text-align: center; margin-bottom: 20px">
+            🌍 Dream Destinations
+          </h2>
+          <div id="destinationGrid" class="destination-grid">
+            <!-- Destinations will be loaded here -->
+          </div>
+
+          <div class="stats-overview">
+            <div class="overview-card">
+              <div class="overview-number" id="totalDestinations">15</div>
+              <div class="overview-label">Available</div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-number" id="wishlistCount">0</div>
+              <div class="overview-label">Wishlist</div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-number" id="averageCost">$0</div>
+              <div class="overview-label">Avg Cost</div>
+            </div>
+            <div class="overview-card">
+              <div class="overview-number" id="methodsUsed">0</div>
+              <div class="overview-label">Methods</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-panel">
+          <div class="panel-title">📊 Results</div>
+
+          <div class="method-display" id="codeDisplay">
+            // Click an array method to see it in action!<br />
+            // Select destinations for your wishlist<br />
+            // Watch live data transformations ✈️
+          </div>
+
+          <div class="travel-log" id="travelLog">
+            <div style="font-weight: bold; margin-bottom: 8px; color: #3498db">
+              ✈️ Travel Log:
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

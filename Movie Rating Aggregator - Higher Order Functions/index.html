@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎬 Movie Rating Aggregator - Higher Order Functions</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Theory Section -->
+      <div class="theory-section">
+        <h1 class="theory-title">📚 Understanding Higher Order Functions</h1>
+
+        <div class="theory-grid">
+          <div class="theory-card">
+            <div class="theory-icon">🎯</div>
+            <h3>What is a Higher Order Function?</h3>
+            <p>
+              A function that either
+              <strong>takes another function as an argument</strong> or
+              <strong>returns a function as output</strong> (or both!).
+            </p>
+            <div class="code-snippet">
+              <code
+                >// Takes function as argument const process = (fn, value) =>
+                fn(value); // Returns function const multiplier = (x) => (y) =>
+                x * y;</code
+              >
+            </div>
+            <p class="theory-note">
+              Think of it as a "function factory" or "function transformer"
+            </p>
+          </div>
+
+          <div class="theory-card">
+            <div class="theory-icon">💡</div>
+            <h3>Why Use HOFs?</h3>
+            <ul class="theory-points">
+              <li>
+                <strong>Reusability</strong> - Create custom functions from
+                generic ones
+              </li>
+              <li>
+                <strong>Composition</strong> - Combine simple functions into
+                complex ones
+              </li>
+              <li>
+                <strong>Abstraction</strong> - Hide implementation details
+              </li>
+              <li>
+                <strong>Cleaner Code</strong> - More readable and maintainable
+              </li>
+            </ul>
+          </div>
+
+          <div class="theory-card">
+            <div class="theory-icon">🔧</div>
+            <h3>Common HOF Patterns</h3>
+            <div class="pattern-list">
+              <div class="pattern-item">
+                <span class="pattern-name">Currying</span>
+                <code>const add = (a) => (b) => a + b;</code>
+              </div>
+              <div class="pattern-item">
+                <span class="pattern-name">Composition</span>
+                <code>compose(fn1, fn2, fn3)</code>
+              </div>
+              <div class="pattern-item">
+                <span class="pattern-name">Callbacks</span>
+                <code>array.map(callback)</code>
+              </div>
+              <div class="pattern-item">
+                <span class="pattern-name">Decorators</span>
+                <code>const enhanced = wrap(fn)</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <div class="theory-icon">🎬</div>
+            <h3>The Movie Rating Analogy</h3>
+            <p>In our demo, HOFs help us:</p>
+            <ul class="theory-points">
+              <li>
+                <strong>Create weights</strong> - Function returns customized
+                scoring function
+              </li>
+              <li>
+                <strong>Filter movies</strong> - Function takes criteria,
+                returns filter
+              </li>
+              <li>
+                <strong>Compose algorithms</strong> - Combine multiple scoring
+                steps
+              </li>
+              <li>
+                <strong>Transform ratings</strong> - Map scores through
+                functions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="header">
+        <h1>🎬 Movie Rating Aggregator</h1>
+        <p>Build Custom Scoring Algorithms Using Higher Order Functions!</p>
+        <div class="badge">
+          Adjust weights, filter movies, and compose scoring functions in
+          real-time
+        </div>
+      </div>
+
+      <!-- Scoring Algorithm Builder -->
+      <div class="algorithm-builder">
+        <h2>🎛️ Scoring Algorithm Builder</h2>
+        <p class="builder-desc">
+          Adjust the weight of each rating source. Each slider is a curried HOF!
+        </p>
+
+        <div class="weight-controls">
+          <div class="weight-control">
+            <div class="weight-header">
+              <span class="weight-label">⭐ IMDb (out of 10)</span>
+              <span class="weight-value" id="imdb-weight-value">40%</span>
+            </div>
+            <input
+              type="range"
+              id="imdb-weight"
+              class="weight-slider"
+              min="0"
+              max="100"
+              value="40"
+              oninput="updateWeight('imdb', this.value)"
+            />
+          </div>
+
+          <div class="weight-control">
+            <div class="weight-header">
+              <span class="weight-label">🍅 Rotten Tomatoes (%)</span>
+              <span class="weight-value" id="rt-weight-value">30%</span>
+            </div>
+            <input
+              type="range"
+              id="rt-weight"
+              class="weight-slider"
+              min="0"
+              max="100"
+              value="30"
+              oninput="updateWeight('rt', this.value)"
+            />
+          </div>
+
+          <div class="weight-control">
+            <div class="weight-header">
+              <span class="weight-label">📊 Metacritic (out of 100)</span>
+              <span class="weight-value" id="meta-weight-value">20%</span>
+            </div>
+            <input
+              type="range"
+              id="meta-weight"
+              class="weight-slider"
+              min="0"
+              max="100"
+              value="20"
+              oninput="updateWeight('meta', this.value)"
+            />
+          </div>
+
+          <div class="weight-control">
+            <div class="weight-header">
+              <span class="weight-label">👥 Audience Score (%)</span>
+              <span class="weight-value" id="audience-weight-value">10%</span>
+            </div>
+            <input
+              type="range"
+              id="audience-weight"
+              class="weight-slider"
+              min="0"
+              max="100"
+              value="10"
+              oninput="updateWeight('audience', this.value)"
+            />
+          </div>
+        </div>
+
+        <div class="preset-buttons">
+          <button class="btn-preset" onclick="applyPreset('balanced')">
+            ⚖️ Balanced
+          </button>
+          <button class="btn-preset" onclick="applyPreset('critics')">
+            🎭 Critics Choice
+          </button>
+          <button class="btn-preset" onclick="applyPreset('audience')">
+            👥 Audience Favorite
+          </button>
+          <button class="btn-preset" onclick="applyPreset('imdb')">
+            ⭐ IMDb Focused
+          </button>
+          <button class="btn-reset" onclick="resetWeights()">🔄 Reset</button>
+        </div>
+
+        <div class="weight-total">
+          <span>Total Weight:</span>
+          <span id="total-weight" class="total-value">100%</span>
+          <span id="weight-warning" class="weight-warning" style="display: none"
+            >⚠️ Should equal 100%</span
+          >
+        </div>
+      </div>
+
+      <!-- HOF Demonstrations -->
+      <div class="hof-demos">
+        <h2>🎯 Higher Order Function Demonstrations</h2>
+        <div class="demo-buttons">
+          <button class="btn-demo" onclick="demoCreateWeight()">
+            <span class="demo-icon">🔧</span>
+            <span class="demo-text">Create Weight Function</span>
+          </button>
+          <button class="btn-demo" onclick="demoFilterGenre()">
+            <span class="demo-icon">🎭</span>
+            <span class="demo-text">Filter by Genre</span>
+          </button>
+          <button class="btn-demo" onclick="demoCompose()">
+            <span class="demo-icon">🔗</span>
+            <span class="demo-text">Compose Functions</span>
+          </button>
+          <button class="btn-demo" onclick="demoMap()">
+            <span class="demo-icon">🔄</span>
+            <span class="demo-text">Map Transform</span>
+          </button>
+          <button class="btn-demo" onclick="demoReduce()">
+            <span class="demo-icon">📊</span>
+            <span class="demo-text">Reduce Aggregate</span>
+          </button>
+          <button class="btn-demo" onclick="demoCurry()">
+            <span class="demo-icon">🎯</span>
+            <span class="demo-text">Currying Example</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="filter-controls">
+        <h2>🔍 Filter & Sort Movies</h2>
+        <div class="filter-buttons">
+          <button class="btn-filter active" onclick="filterMovies('all')">
+            🎬 All Movies
+          </button>
+          <button class="btn-filter" onclick="filterMovies('action')">
+            💥 Action
+          </button>
+          <button class="btn-filter" onclick="filterMovies('drama')">
+            🎭 Drama
+          </button>
+          <button class="btn-filter" onclick="filterMovies('comedy')">
+            😂 Comedy
+          </button>
+          <button class="btn-filter" onclick="filterMovies('scifi')">
+            🚀 Sci-Fi
+          </button>
+          <button class="btn-filter" onclick="filterMovies('thriller')">
+            😱 Thriller
+          </button>
+        </div>
+        <div class="sort-buttons">
+          <button class="btn-sort" onclick="sortMovies('score')">
+            ⬇️ Sort by Score
+          </button>
+          <button class="btn-sort" onclick="sortMovies('year')">
+            📅 Sort by Year
+          </button>
+          <button class="btn-sort" onclick="sortMovies('title')">
+            🔤 Sort by Title
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Movie Grid -->
+        <div class="movie-section">
+          <h2 class="section-title">
+            🎬 Movies <span id="movie-count">(12)</span>
+          </h2>
+          <div class="movie-grid" id="movie-grid">
+            <!-- Movies will be inserted here by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Score Breakdown -->
+          <div class="score-breakdown">
+            <h2 class="section-title">📊 Score Breakdown</h2>
+            <div id="breakdown-content">
+              <p class="breakdown-placeholder">
+                Select a movie to see detailed score breakdown
+              </p>
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="statistics">
+            <h2 class="section-title">📈 Statistics</h2>
+            <div class="stat-item">
+              <span class="stat-label">Average Score:</span>
+              <span class="stat-value" id="avg-score">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Highest Rated:</span>
+              <span class="stat-value" id="highest-rated">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Lowest Rated:</span>
+              <span class="stat-value" id="lowest-rated">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Movies Shown:</span>
+              <span class="stat-value" id="movies-shown">12</span>
+            </div>
+          </div>
+
+          <!-- Current Algorithm -->
+          <div class="current-algorithm">
+            <h2 class="section-title">🧮 Current Algorithm</h2>
+            <div class="algorithm-formula" id="algorithm-formula">
+              <code
+                >score = (imdb × 40%) + (rt × 30%) + (meta × 20%) + (audience ×
+                10%)</code
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Log -->
+      <div class="activity-log">
+        <h2 class="section-title">📋 Activity Log</h2>
+        <div class="log-container" id="log-container">
+          <div class="log-empty">
+            Adjust weights or click demo buttons to see HOFs in action...
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Footer -->
+      <div class="learning-footer">
+        <h3>💡 Key Learning Points</h3>
+        <div class="learning-grid">
+          <div class="learning-item">
+            <h4>🔧 Creating Functions (Currying)</h4>
+            <p>
+              Weight sliders create specialized scoring functions.
+              <code>createWeight(40)</code> returns a function that applies 40%
+              weight to any score.
+            </p>
+          </div>
+          <div class="learning-item">
+            <h4>🎭 Function as Argument</h4>
+            <p>
+              Filter buttons pass criteria functions to the filter. Each genre
+              filter is a custom predicate function.
+            </p>
+          </div>
+          <div class="learning-item">
+            <h4>🔗 Function Composition</h4>
+            <p>
+              The final score is calculated by composing multiple functions:
+              normalize → weight → sum → round.
+            </p>
+          </div>
+          <div class="learning-item">
+            <h4>🔄 Map, Filter, Reduce</h4>
+            <p>
+              Classic HOF patterns used everywhere: map transforms scores,
+              filter selects movies, reduce calculates totals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

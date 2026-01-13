@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎤 Conference Call Manager - This, Call, Apply, Bind</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Theory Section -->
+      <div class="theory-section">
+        <h1 class="theory-title">
+          📚 Understanding 'this' Keyword, Call, Apply, and Bind
+        </h1>
+
+        <div class="theory-grid">
+          <div class="theory-card">
+            <div class="theory-icon">🎯</div>
+            <h3>What is 'this' in JavaScript?</h3>
+            <p>
+              <strong>'this'</strong> refers to the context in which a function
+              is executed. It's like asking "who is speaking right now?" The
+              answer changes based on how the function is called.
+            </p>
+            <div class="code-snippet">
+              <code
+                >const person = { name: 'Vivek', speak() {
+                console.log(this.name); // 'this' = person } }; person.speak();
+                // "Vivek"</code
+              >
+            </div>
+            <p class="theory-note">
+              Think of 'this' as the microphone in a conference - whoever holds
+              it is the current speaker!
+            </p>
+          </div>
+
+          <div class="theory-card">
+            <div class="theory-icon">📞</div>
+            <h3>.call() - Borrow a Method</h3>
+            <p>
+              <strong>call()</strong> lets you borrow a method from one object
+              and use it with another object's context. First argument becomes
+              'this'.
+            </p>
+            <div class="code-snippet">
+              <code
+                >vivek.speak.call(roy); // Roy borrows Vivek's speak method //
+                'this' temporarily = roy // With arguments: greet.call(person,
+                'Hello', 'Team');</code
+              >
+            </div>
+            <ul class="theory-points">
+              <li>Temporarily changes 'this'</li>
+              <li>Executes immediately</li>
+              <li>Arguments passed individually</li>
+            </ul>
+          </div>
+
+          <div class="theory-card">
+            <div class="theory-icon">📢</div>
+            <h3>.apply() - Like Call, but Array</h3>
+            <p>
+              <strong>apply()</strong> works exactly like call(), but takes
+              arguments as an array instead of individually.
+            </p>
+            <div class="code-snippet">
+              <code
+                >// call() - individual arguments greet.call(person, 'Hello',
+                'Team'); // apply() - array of arguments greet.apply(person,
+                ['Hello', 'Team']); // Perfect for Math.max with arrays:
+                Math.max.apply(null, [1, 5, 3]); // 5</code
+              >
+            </div>
+            <ul class="theory-points">
+              <li>Same as call() but array args</li>
+              <li>Executes immediately</li>
+              <li>Useful with Math functions</li>
+            </ul>
+          </div>
+
+          <div class="theory-card">
+            <div class="theory-icon">🔗</div>
+            <h3>.bind() - Permanent Binding</h3>
+            <p>
+              <strong>bind()</strong> creates a new function with 'this'
+              permanently set. Unlike call/apply, it doesn't execute immediately
+              - it returns a new function.
+            </p>
+            <div class="code-snippet">
+              <code
+                >const boundSpeak = vivek.speak.bind(roy); boundSpeak(); //
+                ALWAYS roy, can't change! // Perfect for event handlers:
+                button.addEventListener('click', this.handleClick.bind(this)
+                );</code
+              >
+            </div>
+            <ul class="theory-points">
+              <li>Creates new function</li>
+              <li>Permanently binds 'this'</li>
+              <li>Returns function (doesn't execute)</li>
+              <li>Can't be overridden</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="header">
+        <h1>🎤 Conference Call Manager</h1>
+        <p>
+          Master JavaScript's 'this', call(), apply(), and bind() Through
+          Context Switching!
+        </p>
+        <div class="badge">
+          Watch the microphone move between speakers as context changes
+        </div>
+      </div>
+
+      <!-- Conference Room -->
+      <div class="conference-room">
+        <h2>🎙️ Conference Room</h2>
+        <p class="room-desc">
+          Click on speakers to select them, then use the method buttons below!
+        </p>
+
+        <div class="speakers-grid">
+          <!-- Speaker 1: Vivek (CEO) -->
+          <div
+            class="speaker-card"
+            id="speaker-vivek"
+            onclick="selectSpeaker('vivek')"
+          >
+            <div class="speaker-avatar">🧑‍💼</div>
+            <div class="speaker-info">
+              <div class="speaker-name">Vivek</div>
+              <div class="speaker-role">CEO</div>
+              <div class="speaker-dept">Executive</div>
+            </div>
+            <div class="microphone" id="mic-vivek">🎤</div>
+            <div class="speaker-status" id="status-vivek">Listening</div>
+          </div>
+
+          <!-- Speaker 2: Roy (Developer) -->
+          <div
+            class="speaker-card"
+            id="speaker-roy"
+            onclick="selectSpeaker('roy')"
+          >
+            <div class="speaker-avatar">👨‍💻</div>
+            <div class="speaker-info">
+              <div class="speaker-name">Roy</div>
+              <div class="speaker-role">Developer</div>
+              <div class="speaker-dept">Engineering</div>
+            </div>
+            <div class="microphone" id="mic-roy">🎤</div>
+            <div class="speaker-status" id="status-roy">Listening</div>
+          </div>
+
+          <!-- Speaker 3: Jessica (Manager) -->
+          <div
+            class="speaker-card"
+            id="speaker-jessica"
+            onclick="selectSpeaker('jessica')"
+          >
+            <div class="speaker-avatar">👩‍💼</div>
+            <div class="speaker-info">
+              <div class="speaker-name">Jessica</div>
+              <div class="speaker-role">Manager</div>
+              <div class="speaker-dept">Project Management</div>
+            </div>
+            <div class="microphone" id="mic-jessica">🎤</div>
+            <div class="speaker-status" id="status-jessica">Listening</div>
+          </div>
+
+          <!-- Speaker 4: Maya (Designer) -->
+          <div
+            class="speaker-card"
+            id="speaker-maya"
+            onclick="selectSpeaker('maya')"
+          >
+            <div class="speaker-avatar">🎨</div>
+            <div class="speaker-info">
+              <div class="speaker-name">Maya</div>
+              <div class="speaker-role">Designer</div>
+              <div class="speaker-dept">Creative</div>
+            </div>
+            <div class="microphone" id="mic-maya">🎤</div>
+            <div class="speaker-status" id="status-maya">Listening</div>
+          </div>
+        </div>
+
+        <!-- Current Context Display -->
+        <div class="context-display">
+          <div class="context-label">Current Context (this):</div>
+          <div class="context-value" id="current-context">
+            <span class="context-name">Vivek</span>
+            <span class="context-role">(CEO, Executive)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Method Demonstrations -->
+      <div class="method-demos">
+        <h2>🎯 Method Demonstrations</h2>
+        <div class="demo-grid">
+          <button class="btn-demo btn-normal" onclick="demoNormalCall()">
+            <span class="demo-icon">🎤</span>
+            <span class="demo-text">Normal Call</span>
+            <span class="demo-code">speaker.speak()</span>
+          </button>
+
+          <button class="btn-demo btn-call" onclick="demoCall()">
+            <span class="demo-icon">📞</span>
+            <span class="demo-text">.call() Method</span>
+            <span class="demo-code">fn.call(context)</span>
+          </button>
+
+          <button class="btn-demo btn-apply" onclick="demoApply()">
+            <span class="demo-icon">📢</span>
+            <span class="demo-text">.apply() Method</span>
+            <span class="demo-code">fn.apply(context, [])</span>
+          </button>
+
+          <button class="btn-demo btn-bind" onclick="demoBind()">
+            <span class="demo-icon">🔗</span>
+            <span class="demo-text">.bind() Method</span>
+            <span class="demo-code">fn.bind(context)</span>
+          </button>
+
+          <button class="btn-demo btn-arrow" onclick="demoArrowFunction()">
+            <span class="demo-icon">➡️</span>
+            <span class="demo-text">Arrow Function</span>
+            <span class="demo-code">() => {}</span>
+          </button>
+
+          <button class="btn-demo btn-lost" onclick="demoLostContext()">
+            <span class="demo-icon">❌</span>
+            <span class="demo-text">Lost Context</span>
+            <span class="demo-code">Detached method</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hotkey Buttons (Bound Functions) -->
+      <div class="hotkey-section">
+        <h2>🔘 Hotkey Buttons (Bound Functions)</h2>
+        <p class="hotkey-desc">
+          Create permanently bound functions using .bind() - they always call
+          the same person!
+        </p>
+        <div class="hotkey-buttons" id="hotkey-container">
+          <div class="hotkey-placeholder">
+            Click "Create Hotkey" to bind current speaker to a button
+          </div>
+        </div>
+        <button class="btn-create-hotkey" onclick="createHotkey()">
+          🔗 Create Hotkey for Current Speaker
+        </button>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Call Transcript -->
+        <div class="transcript-section">
+          <h2 class="section-title">📋 Call Transcript</h2>
+          <div class="transcript-container" id="transcript">
+            <div class="transcript-empty">
+              Start a call to see the transcript...
+            </div>
+          </div>
+        </div>
+
+        <!-- Context Tracker -->
+        <div class="sidebar">
+          <div class="context-tracker">
+            <h2 class="section-title">📊 Context Tracker</h2>
+            <div class="tracker-item">
+              <span class="tracker-label">Current 'this':</span>
+              <span class="tracker-value" id="tracker-this">Vivek</span>
+            </div>
+            <div class="tracker-item">
+              <span class="tracker-label">Method Used:</span>
+              <span class="tracker-value" id="tracker-method">None</span>
+            </div>
+            <div class="tracker-item">
+              <span class="tracker-label">Arguments:</span>
+              <span class="tracker-value" id="tracker-args">None</span>
+            </div>
+            <div class="tracker-item">
+              <span class="tracker-label">Bound Functions:</span>
+              <span class="tracker-value" id="tracker-bound">0</span>
+            </div>
+          </div>
+
+          <!-- Quick Reference -->
+          <div class="quick-reference">
+            <h2 class="section-title">📖 Quick Reference</h2>
+            <div class="reference-item">
+              <div class="reference-method">Normal Call</div>
+              <div class="reference-desc">this = object calling method</div>
+            </div>
+            <div class="reference-item">
+              <div class="reference-method">.call(context, arg1, arg2)</div>
+              <div class="reference-desc">Temporary context switch</div>
+            </div>
+            <div class="reference-item">
+              <div class="reference-method">.apply(context, [args])</div>
+              <div class="reference-desc">Like call, but array args</div>
+            </div>
+            <div class="reference-item">
+              <div class="reference-method">.bind(context)</div>
+              <div class="reference-desc">Create permanently bound fn</div>
+            </div>
+            <div class="reference-item">
+              <div class="reference-method">Arrow Function</div>
+              <div class="reference-desc">Lexical this (from parent)</div>
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="statistics">
+            <h2 class="section-title">📈 Call Statistics</h2>
+            <div class="stat-item">
+              <span class="stat-label">Total Calls:</span>
+              <span class="stat-value" id="stat-calls">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">.call() Used:</span>
+              <span class="stat-value" id="stat-call">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">.apply() Used:</span>
+              <span class="stat-value" id="stat-apply">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">.bind() Created:</span>
+              <span class="stat-value" id="stat-bind">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Footer -->
+      <div class="learning-footer">
+        <h3>💡 Key Learning Points</h3>
+        <div class="learning-grid">
+          <div class="learning-item">
+            <h4>🎤 'this' Changes with Context</h4>
+            <p>
+              The value of 'this' depends on HOW a function is called, not WHERE
+              it's defined. Click different speakers to see 'this' change!
+            </p>
+          </div>
+          <div class="learning-item">
+            <h4>📞 .call() is Temporary</h4>
+            <p>
+              Use .call() to borrow a method temporarily. Great for using array
+              methods on array-like objects!
+            </p>
+          </div>
+          <div class="learning-item">
+            <h4>📢 .apply() Takes Arrays</h4>
+            <p>
+              Identical to .call() but accepts arguments as an array. Perfect
+              for Math.max/min with number arrays!
+            </p>
+          </div>
+          <div class="learning-item">
+            <h4>🔗 .bind() is Permanent</h4>
+            <p>
+              Creates a new function with 'this' locked in. Essential for event
+              handlers and callbacks to preserve context!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
